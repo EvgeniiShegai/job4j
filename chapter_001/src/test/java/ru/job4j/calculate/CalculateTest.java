@@ -18,33 +18,33 @@ public class CalculateTest {
     @Test
     public void whenAddOneplusOneThenTwo() {
        Calculate calc = new Calculate();
-       calc.add(1D,1D);
+       calc.add(1D, 1D);
        double expect = 2D;
-       assertThat(calc.getResult(),is (expect));
+       assertThat(calc.getResult(), is(expect));
     }
 
     @Test
-    public void whenSubtractOneAndOneThenZero(){
+    public void whenSubtractOneAndOneThenZero() {
         Calculate calc = new Calculate();
-        calc.subtract(1D,1D);
+        calc.subtract(1D, 1D);
         double expect = 0.0;
-        assertThat(calc.getResult(),is (expect));
+        assertThat(calc.getResult(), is(expect));
     }
 
     @Test
-    public void whenDivOneAndOneThenOne(){
+    public void whenDivOneAndOneThenOne() {
         Calculate calc = new Calculate();
-        calc.div(1D,1D);
+        calc.div(1D, 1D);
         double expect = 1D;
-        assertThat(calc.getResult(),is (expect));
+        assertThat(calc.getResult(), is(expect));
     }
 
     @Test
-    public void whenMultipleOneAndOneThenOne(){
+    public void whenMultipleOneAndOneThenOne() {
         Calculate calc = new Calculate();
-        calc.multiple(1D,1D);
+        calc.multiple(1D, 1D);
         double expect = 1D;
-        assertThat(calc.getResult(),is (expect));
+        assertThat(calc.getResult(), is(expect));
     }
 
 }
