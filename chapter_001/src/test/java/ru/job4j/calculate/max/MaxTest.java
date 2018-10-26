@@ -24,7 +24,7 @@ public class MaxTest {
     public void maxFromTwoNumbers3() {
         Max max = new Max();
         int res = max.max(1, 1);
-        assertThat(res, is(-1));
+        assertThat(res, is(1));
     }
 
 
