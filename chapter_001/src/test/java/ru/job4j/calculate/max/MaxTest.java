@@ -14,6 +14,21 @@ public class MaxTest {
     }
 
     @Test
+    public void maxFromTwoNumbers2() {
+        Max max = new Max();
+        int res = max.max(2, 1);
+        assertThat(res, is(2));
+    }
+
+    @Test
+    public void maxFromTwoNumbers3() {
+        Max max = new Max();
+        int res = max.max(1, 1);
+        assertThat(res, is(-1));
+    }
+
+
+    @Test
     public void maxFromThreeNumbers() {
         Max max = new Max();
         int res = max.max(1, 2, 3);
