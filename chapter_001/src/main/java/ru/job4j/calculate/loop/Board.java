@@ -8,19 +8,14 @@ public class Board {
         String separator = System.lineSeparator();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (i % 2 == 0) {
-                    if (j % 2 == 0) {
-                        str.append("x");
-                    } else {
-                        str.append(" ");
-                    }
-                } else {
-                    if (j % 2 == 0) {
-                        str.append(" ");
-                    } else {
-                        str.append("x");
-                    }
-                }
+
+               if ((i + j) % 2 == 0) {
+                   str.append("x");
+               } else {
+                   str.append(" ");
+               }
+
+
             }
             str.append(separator);
         }
