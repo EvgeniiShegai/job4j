@@ -3,15 +3,13 @@ package ru.job4j.calculate.array;
 public class Check {
 
     public boolean mono(boolean[] array) {
-
-
+        boolean res = true;
+        boolean temp = array[0];
         for (int i = 0; i < array.length; i++) {
-            boolean temp = array[0];
           if (temp != array[i]) {
-              return false;
+              res = false;
           }
-
         }
-        return true;
+        return res;
     }
 }
