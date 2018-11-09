@@ -9,9 +9,9 @@ public class SortArrayTest {
     @Test
     public void whenTwoMassive() {
         SortArray sort = new SortArray();
-        int[] one = {2, 1};
-        int[] two = {3, 4};
-        int[] expect = {1, 2, 3, 4};
+        int[] two = {3, 7, 8, 9, 10};
+        int[] one = {1, 3, 5, 7, 13};
+        int[] expect = {1, 3, 3, 5, 7, 7, 8, 9, 10, 13};
         int[] result = sort.array(one, two);
         assertThat(result, is(expect));
     }
