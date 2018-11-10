@@ -1,44 +1,19 @@
 package ru.job4j.calculate.array;
 
 /**
- * Calculate
+ * SortArray
  *@author Evgenii Shegai(34shegai@gmail.com)
 
  */
 
 public class SortArray {
 
-    private int[] data;
 
-    public int[] array(int[] one, int[] two) {
-        this.data = new int[one.length + two.length];
-        one = swap(one);
-        two = swap(two);
-        return arrayFill(data, one, two);
-    }
-
-    /**
-     * сортирует массив пузырьковой сортировкой
-     * @param data
-     * @return data
-     */
-    private int[] swap(int[] data) {
-        for (int i = data.length - 1; i > 0; i--) {
-            for (int j = 0; j < i; j++) {
-                if (data[j] > data[j + 1]) {
-                    int temp = data[j];
-                    data[j] = data[j + 1];
-                    data[j + 1] = temp;
-                }
-            }
-        }
-        return data;
-    }
-
-    private int[] arrayFill(int[] result, int[] array2, int[] array3) {
+    public int[] arrayFill(int[] array2, int[] array3) {
+       int[] result = new int[array2.length + array3.length];
         int index = 0;
         int index2 = 0;
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i < result.length; i++) {
             if (index >= array2.length) {
                 result[i] = array3[index];
                 break;
