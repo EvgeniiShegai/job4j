@@ -1,5 +1,10 @@
 package ru.job4j;
 
+/**
+ * Tracker
+ * author Shegai Evgenii(34shegai@gmail.com)
+ */
+
 import java.util.*;
 import java.util.Arrays;
 
@@ -16,7 +21,7 @@ public class Tracker {
     }
 
     public void replace(String id, Item item) {
-        for (int i = 0; i < items.length; i++) {
+        for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
                 items[i] = item;
                 break;
@@ -26,34 +31,25 @@ public class Tracker {
 
 
     public void delete(String id) {
-        int length = items.length;
-       for (int i = 0; i < items.length; i++) {
+
+       for (int i = 0; i < position; i++) {
            if (items[i] != null && items[i].getId().equals(id)) {
-               System.arraycopy(items, i + 1, items, i, length - i  - 1);
+               System.arraycopy(items, i + 1, items, i, position - i  - 1);
+               position--;
+               break;
            }
        }
     }
 
     public Item[] findAll() {
-        int index = 0;
-        int length = items.length;
-        Item[] result = new Item[length];
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null) {
-                result[index++] = items[i];
-            } else {
-                length--;
-            }
-        }
-        return Arrays.copyOf(items, length);
+        return Arrays.copyOf(items, position);
     }
 
 
         public Item[] findByName(String key) {
             int index = 0;
-            int length = items.length;
-            Item[] result = new Item[length];
-            for (int i = 0; i < items.length; i++) {
+            Item[] result = new Item[position];
+            for (int i = 0; i < position; i++) {
                 if (items[i] != null) {
                     if (items[i].getName().equals(key)) {
                         result[index++] = items[i];
@@ -66,9 +62,9 @@ public class Tracker {
 
         public Item findById(String id) {
             Item result = null;
-            for (Item temp : items) {
-                if (temp.getId().equals(id)) {
-                    result = temp;
+            for (int i = 0; i < position; i++) {
+                if (items[i].getId().equals(id)) {
+                    result = items[i];
                     break;
                 }
             }
