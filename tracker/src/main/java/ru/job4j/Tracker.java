@@ -23,6 +23,7 @@ public class Tracker {
     public void replace(String id, Item item) {
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
+                item.setId(id);
                 items[i] = item;
                 break;
             }
