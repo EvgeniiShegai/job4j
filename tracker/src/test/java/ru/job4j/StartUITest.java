@@ -9,7 +9,7 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test ", "desc", "6"});
+        Input input = new StubInput(new String[]{"0", "test ", "desc", "10", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test "));
     }

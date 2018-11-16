@@ -16,6 +16,6 @@ public class StubInput implements Input {
 
     @Override
     public long create() {
-        return 0;
+        return Long.parseLong(this.value[position]);
     }
 }
