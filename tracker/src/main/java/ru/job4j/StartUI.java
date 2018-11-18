@@ -59,7 +59,11 @@ public class StartUI {
         System.out.println("Найти заявку по id");
         String id = this.input.ask("Введите id заявки");
         Item result = this.tracker.findById(id);
-        System.out.println("Заявка с данным id " + result.getId() + " найдена");
+        if (result == null) {
+            System.out.println("Заявка была удалена, либо изменена . Попробуйте найти заявку по имени");
+        } else {
+            System.out.println("Заявка с данным id " + result.getId() + " найдена");
+        }
     }
 
     private void delete() {
@@ -76,7 +80,7 @@ public class StartUI {
         String desc = this.input.ask("Введите описание заявки");
         System.out.println("Введите дату создания заявки");
         long create = this.input.create();
-        Item item = new Item(name, desc, create);
+        Item item = new Item(name, desc);
         this.tracker.replace(id, item);
         System.out.println("Заявка  добавлена");
     }
@@ -93,9 +97,7 @@ public class StartUI {
         System.out.println("Добавление новой заявки");
         String name = this.input.ask("Введите имя заявки");
         String desc = this.input.ask("Введите описание заявки");
-        System.out.println("Введите дату создания заявки");
-        long create = this.input.create();
-        Item item = new Item(name, desc, create);
+        Item item = new Item(name, desc);
         this.tracker.add(item);
         System.out.println("Новая заявка с id" + item.getId() + "создана");
     }

@@ -9,7 +9,7 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test ", "desc", "10", "6"});
+        Input input = new StubInput(new String[]{"0", "test ", "desc", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test "));
     }
@@ -17,8 +17,8 @@ public class StartUITest {
     @Test
     public void whenAddAndThenreplaceItem() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("test", "desc", 11));
-        Input input = new StubInput(new String[] {"2", item.getId(), "test2", "desc2", "12", "6"});
+        Item item = tracker.add(new Item("test", "desc"));
+        Input input = new StubInput(new String[] {"2", item.getId(), "test2", "desc2", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("test2"));
     }
@@ -26,8 +26,8 @@ public class StartUITest {
     @Test
     public void whenFindItemById() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("test", "desc", 11));
-        Item item2 = tracker.add(new Item("test2", "desc2", 111));
+        Item item = tracker.add(new Item("test", "desc"));
+        Item item2 = tracker.add(new Item("test2", "desc2"));
         Item result = tracker.findById(item2.getId());
         assertThat(result.getId(), is(item2.getId()));
     }
@@ -35,8 +35,8 @@ public class StartUITest {
     @Test
     public void whenFindItemByName() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("test", "desc", 11));
-        Item item2 = tracker.add(new Item("test2", "desc2", 111));
+        Item item = tracker.add(new Item("test", "desc"));
+        Item item2 = tracker.add(new Item("test2", "desc2"));
         Item[] result = tracker.findByName(item2.getName());
         assertThat(result[0].getName(), is(item2.getName()));
     }
@@ -44,8 +44,8 @@ public class StartUITest {
     @Test
     public void whenAddItemAndDelete() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("test", "desc", 11));
-        Item item2 = tracker.add(new Item("test2", "desc2", 111));
+        Item item = tracker.add(new Item("test", "desc"));
+        Item item2 = tracker.add(new Item("test2", "desc2"));
         tracker.delete(item.getId());
         assertThat(tracker.findAll()[0].getName(), is(item2.getName()));
     }
