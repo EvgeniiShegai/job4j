@@ -15,7 +15,9 @@ public class StubInput implements Input {
     }
 
     @Override
-    public long create() {
-        return Long.parseLong(this.value[position]);
+    public int ask(String question, int[] range) {
+        return 0;
     }
+
+
 }

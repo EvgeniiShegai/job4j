@@ -50,6 +50,10 @@ public class MenuTracker {
     private Tracker tracker;
     private UserAction[] actions = new UserAction[6];
 
+    public UserAction[] getActions() {
+        return actions;
+    }
+
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;

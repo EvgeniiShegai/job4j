@@ -3,6 +3,6 @@ package ru.job4j;
 public interface Input {
 
     String ask(String question);
-    long create();
+    int ask(String question, int[] range);
 
 }
