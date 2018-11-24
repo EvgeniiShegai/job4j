@@ -1,5 +1,6 @@
 package ru.job4j;
 
+
 public class StubInput implements Input {
 
     private  final String[] value;
@@ -16,7 +17,8 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, int[] range) {
-        return 0;
+        int result = Integer.valueOf(value[position++]);
+       return  result;
     }
 
 

@@ -1,24 +1,22 @@
 package ru.job4j;
 
-class EditItemByid implements UserAction {
+class FindItemByid implements UserAction {
 
     @Override
     public int key() {
-        return 2;
+        return 3;
     }
 
     @Override
     public void execute(Input input, Tracker tracker) {
         String id = (input.ask("Please , enter the item id"));
-        String name = input.ask("Please enter the items name");
-        String desc = input.ask("Please enter the items description");
-        Item item = new Item(name, desc);
-        tracker.replace(id, item);
+        Item result = tracker.findById(id);
+        System.out.println("Item is found " + result.getName());
     }
 
     @Override
     public String info() {
-        return String.format("%s, %s", this.key(), "Edit the  item by id");
+        return String.format("%s, %s", this.key(), "Find   item by id");
     }
 }
 
@@ -26,7 +24,7 @@ class FindItemByName implements UserAction {
 
     @Override
     public int key() {
-        return 5;
+        return 4;
     }
 
     @Override
@@ -62,10 +60,10 @@ public class MenuTracker {
     public void fillActions() {
         this.actions[0] = this.new AddItem();
         this.actions[1] = new MenuTracker.ShowItems();
-        this.actions[2] = new EditItemByid();
-        this.actions[3] =  new MenuTracker.DeleteItem();
-        this.actions[4] =  new FindItem();
-        this.actions[5] = new FindItemByName();
+        this.actions[2] =  new MenuTracker.DeleteItem();
+        this.actions[3] =  new FindItemByid();
+        this.actions[4] = new FindItemByName();
+        this.actions[5] = new ReplaceItem();
     }
 
     public void select(int key) {
@@ -80,6 +78,27 @@ public class MenuTracker {
         }
     }
 
+    private class ReplaceItem implements UserAction {
+
+        @Override
+        public int key() {
+            return 5;
+        }
+
+        @Override
+        public void execute(Input input, Tracker tracker) {
+           String id = input.ask("Please enter the id");
+           String name = input.ask("Please enter the items name");
+           String desc = input.ask("Please enter the description item");
+           tracker.replace(id, new Item(name, desc));
+        }
+
+        @Override
+        public String info() {
+            return String.format("%s, %s", this.key(), "Replace the item");
+        }
+    }
+
     private class AddItem implements UserAction {
 
         @Override
@@ -89,9 +108,9 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-           String name = input.ask("Please enter the items name");
-           String desc = input.ask("Please enter the items description");
-           tracker.add(new Item(name, desc));
+            String name = input.ask("Please enter the items name");
+            String desc = input.ask("Please enter the items description");
+            tracker.add(new Item(name, desc));
         }
 
         @Override
@@ -104,7 +123,7 @@ public class MenuTracker {
 
         @Override
         public int key() {
-            return 3;
+            return 2;
         }
 
         @Override
@@ -139,23 +158,5 @@ public class MenuTracker {
         }
     }
 
-    private static class FindItem implements UserAction {
 
-        @Override
-        public int key() {
-            return 4;
-        }
-
-        @Override
-        public void execute(Input input, Tracker tracker) {
-            String id = input.ask("Please enter the item id");
-             Item item = tracker.findById(id);
-            System.out.println("Item is found " + item.getId());
-        }
-
-        @Override
-        public String info() {
-            return String.format("%s, %s", this.key(), "Item  by id is found");
-        }
-    }
 }
