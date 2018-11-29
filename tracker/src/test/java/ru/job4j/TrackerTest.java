@@ -20,8 +20,8 @@ public class TrackerTest {
         Item item = new Item("One", "Test");
         Item temp = tracker.add(item);
         Item item2 = new Item("Two", "Test2");
-        tracker.replace(temp.getId(), item2);
-        assertThat(tracker.findAll()[0], is(item2));
+        boolean result = tracker.replace(temp.getId(), item2);
+        assertThat(result, is(true));
     }
 
     @Test
@@ -64,8 +64,8 @@ public class TrackerTest {
         Item temp = tracker.add(item);
         Item item2 = new Item("Three", "Test3");
         Item temp2 = tracker.add(item2);
-        tracker.delete(temp.getId());
-        assertThat(tracker.findAll()[0], is(temp2));
+        boolean res = tracker.delete(temp.getId());
+        assertThat(res, is(true));
     }
 
 

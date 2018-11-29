@@ -11,7 +11,13 @@ class FindItemByid implements UserAction {
     public void execute(Input input, Tracker tracker) {
         String id = (input.ask("Please , enter the item id"));
         Item result = tracker.findById(id);
-        System.out.println("Item is found " + result.getName());
+        try {
+            String name = result.getName();
+            System.out.println("Item is found " + name);
+        } catch (NullPointerException npe) {
+            System.out.println("Please enter the valid id");
+        }
+
     }
 
     @Override
@@ -48,8 +54,13 @@ public class MenuTracker {
     private Tracker tracker;
     private UserAction[] actions = new UserAction[6];
 
-    public UserAction[] getActions() {
-        return actions;
+    public int[] getActions() {
+        int[] ranges = new int[actions.length];
+        int i = 0;
+        for (UserAction action : actions) {
+            ranges[i++] = action.key();
+        }
+        return ranges;
     }
 
     public MenuTracker(Input input, Tracker tracker) {
@@ -80,6 +91,8 @@ public class MenuTracker {
 
     private class ReplaceItem implements UserAction {
 
+        private boolean res = false;
+
         @Override
         public int key() {
             return 5;
@@ -90,12 +103,12 @@ public class MenuTracker {
            String id = input.ask("Please enter the id");
            String name = input.ask("Please enter the items name");
            String desc = input.ask("Please enter the description item");
-           tracker.replace(id, new Item(name, desc));
+           res = tracker.replace(id, new Item(name, desc));
         }
 
         @Override
         public String info() {
-            return String.format("%s, %s", this.key(), "Replace the item");
+            return String.format("%s, %s, %s", this.key(), "Replace the item - ", this.res);
         }
     }
 
@@ -120,6 +133,7 @@ public class MenuTracker {
     }
 
     private class DeleteItem implements UserAction {
+        private boolean res = false;
 
         @Override
         public int key() {
@@ -128,13 +142,13 @@ public class MenuTracker {
 
         @Override
         public void execute(Input input, Tracker tracker) {
-            tracker.delete(input.ask("Please enter the id"));
+           res = tracker.delete(input.ask("Please enter the id"));
 
         }
 
         @Override
         public String info() {
-            return String.format("%s, %s", this.key(), "Delete the  item");
+            return String.format("%s, %s,%s", this.key(), "Delete the  item -", this.res);
         }
     }
 

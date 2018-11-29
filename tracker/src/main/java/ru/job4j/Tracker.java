@@ -20,26 +20,31 @@ public class Tracker {
         return item;
     }
 
-    public void replace(String id, Item item) {
+    public boolean replace(String id, Item item) {
+        boolean res = false;
         for (int i = 0; i < position; i++) {
             if (items[i].getId().equals(id)) {
                 item.setId(id);
                 items[i] = item;
+                res = true;
                 break;
             }
         }
+        return res;
     }
 
 
-    public void delete(String id) {
-
+    public boolean delete(String id) {
+       boolean result = false;
        for (int i = 0; i < position; i++) {
            if (items[i] != null && items[i].getId().equals(id)) {
+               result = true;
                System.arraycopy(items, i + 1, items, i, position - i  - 1);
                position--;
                break;
            }
        }
+       return result;
     }
 
     public Item[] findAll() {
@@ -70,7 +75,8 @@ public class Tracker {
                 }
             }
             return result;
-        }
+            }
+
 
         private String generatId() {
             return String.valueOf(System.currentTimeMillis() + RN.nextInt(100));

@@ -11,6 +11,7 @@ public class StartUI {
     private final Tracker tracker;
     private int[] ranges;
 
+
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
@@ -19,9 +20,9 @@ public class StartUI {
     public void init() {
       MenuTracker menuTracker = new MenuTracker(this.input, this.tracker);
       menuTracker.fillActions();
+      this.ranges = menuTracker.getActions();
       do {
           menuTracker.show();
-          ranges = new int[menuTracker.getActions().length];
           menuTracker.select(input.ask("Select", ranges));
       } while (!"y".equals(this.input.ask("Exit? y")));
     }
